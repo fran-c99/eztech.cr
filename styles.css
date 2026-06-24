@@ -42,9 +42,12 @@ body.dark {
   justify-content: center;
   width: 48px;
   height: 28px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.6));
+  background: #e4e4e0;
+  border: 1px solid rgba(26, 26, 24, 0.14);
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.8);
+  box-shadow:
+          inset 0 1px 0 rgba(255,255,255,0.95),
+          0 8px 20px rgba(26, 26, 24, 0.10);
   margin-left: 12px;
   cursor: pointer;
   padding: 3px;
@@ -54,12 +57,12 @@ body.dark {
 .theme-toggle .theme-knob {
   width: 20px;
   height: 20px;
-  background: #111;
+  background: #1a1a18;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
+  box-shadow: 0 1px 4px rgba(26, 26, 24, 0.30), inset 0 1px 0 rgba(255,255,255,0.08);
   transform: translateX(-8px);
   transition: transform 0.18s ease, background 0.18s ease;
 }
@@ -269,9 +272,12 @@ nav {
   inset: 1px 1px auto 1px;
   height: 28%;
   border-radius: 999px 999px 38% 38%;
-  background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0));
+  background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0));
   pointer-events: none;
   mix-blend-mode: normal;
+}
+body.dark .nav-brand::after {
+  display: none;
 }
 
 .nav-brand:hover {
@@ -546,6 +552,84 @@ nav {
   overflow: hidden;
   transition: max-height 0.32s ease, padding 0.22s ease;
   padding: 0 16px;
+}
+
+/* ── Nested <details> inside category lists ── */
+.category-list details {
+  list-style: none;
+}
+
+.category-list details summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  padding: 4px 0;
+  user-select: none;
+}
+
+/* Remove default browser arrow */
+.category-list details summary::-webkit-details-marker { display: none; }
+.category-list details summary::marker { display: none; }
+
+/* Custom caret icon */
+.category-list details summary::before {
+  content: '▸';
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  transition: transform 0.2s ease;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.category-list details[open] summary::before {
+  transform: rotate(90deg);
+  color: var(--text);
+}
+
+/* Nested sub-list */
+.category-list details ul {
+  margin-left: 1rem;
+  margin-top: 4px;
+  padding-left: 0.5rem;
+  border-left: 2px solid var(--border-strong);
+  list-style: none;
+}
+
+.category-list details ul li {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  padding: 3px 0;
+  margin: 0;
+  position: relative;
+  padding-left: 0.75rem;
+}
+
+/* Small dot per sub-item */
+.category-list details ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-light);
+}
+
+/* Smooth open animation */
+.category-list details[open] ul {
+  animation: detailsFadeIn 0.2s ease forwards;
+}
+
+@keyframes detailsFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .service-category.open .category-list {
