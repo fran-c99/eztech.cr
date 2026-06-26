@@ -138,7 +138,7 @@ if (faqList) {
   });
 }
 
-// Service categories toggles (Soporte Técnico, Soluciones para Empresas, Formación)
+// Service categories toggles
 (() => {
   const categories = Array.from(document.querySelectorAll('.service-category'));
   if (!categories.length) return;
@@ -165,7 +165,6 @@ if (faqList) {
         closeAll();
         cat.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
-        // NOTE: we intentionally do NOT scroll or prefill here — only expand the category.
       }
     });
 
@@ -368,4 +367,15 @@ if ('IntersectionObserver' in window) {
 // After DOM loads, pulse all toggles once to signal interactivity
 document.querySelectorAll('.category-toggle').forEach(btn => {
   btn.classList.add('pulse-once');
+});
+
+// Sub-category accordion: close siblings when one opens
+document.querySelectorAll('.category-list details').forEach((detail) => {
+  detail.addEventListener('toggle', () => {
+    if (!detail.open) return; // only act on open events
+    const siblings = detail.closest('.category-list').querySelectorAll('details');
+    siblings.forEach((sibling) => {
+      if (sibling !== detail) sibling.open = false;
+    });
+  });
 });

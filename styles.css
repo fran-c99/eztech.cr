@@ -118,7 +118,7 @@ body.dark .category-toggle {
 
 body.dark .category-list ul { color: var(--text-muted); }
 
-/* Ensure primary readable text is light/white in dark mode for key UI elements */
+/* We need to ensure that the primary readable text is light/white in dark mode for key UI elements */
 body.dark .category-toggle,
 body.dark .category-toggle .category-title,
 body.dark .category-toggle .category-emoji,
@@ -141,7 +141,7 @@ body.dark .footer-logo,
 body.dark .footer-copy,
 body.dark .footer-links a,
 body.dark .nav-links a:not(.nav-cta) {
-  color: var(--text) !important;
+  color: var(--text);
 }
 
 /* Make nav toggle bars visible in dark mode */
@@ -149,9 +149,9 @@ body.dark .nav-toggle span { background: var(--text); }
 
 /* In dark mode the primary contact button should be white with black text. */
 body.dark .nav-cta {
-  background: #ffffff !important;
-  color: #111111 !important;
-  border-color: rgba(0,0,0,0.08) !important;
+  background: #ffffff;!important;
+  color: #111111;!important;
+  border-color: rgba(0,0,0,0.08);!important;
 }
 
 /* Adjust hover state in dark mode to keep good contrast */
@@ -311,7 +311,7 @@ body.dark .nav-brand::after {
 }
 
 .nav-links a {
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 500;
   color: var(--text-muted);
   text-decoration: none;
@@ -496,14 +496,16 @@ body.dark .nav-brand::after {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
 }
+/* SERVICES-CATEGORIES */
 
-/* Services categories (3 main categories with dropdowns) */
+/* The grid itself*/
 .services-categories {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 3rem;
 }
 
+/* How it looks */
 .service-category {
   background: transparent;
   border: none;
@@ -511,6 +513,7 @@ body.dark .nav-brand::after {
   padding: 0;
 }
 
+/* The toggle itself */
 .category-toggle {
   display: flex;
   align-items: center;
@@ -519,8 +522,8 @@ body.dark .nav-brand::after {
   background: linear-gradient(180deg, rgba(255,255,255,0.84), rgba(255,255,255,0.60));
   border: 1px solid rgba(255,255,255,0.70);
   border-radius: 999px;
-  padding: 14px;
-  text-align: left;
+  padding: 9px;
+  text-align: center;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
@@ -761,7 +764,7 @@ body.dark .nav-brand::after {
 
 .about-visual {
   background: var(--bg-card);
-  border-radius: var(--radius);
+  border-radius: 25% 10%;;
   border: 1px solid var(--border);
   aspect-ratio: 4/3;
   display: flex;
@@ -776,7 +779,7 @@ body.dark .nav-brand::after {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  border-radius: var(--radius);
+  border-radius: 25% 10%;;
 }
 
 .about-placeholder {
@@ -1122,6 +1125,7 @@ footer {
   * { transition-duration: 0.01ms !important; }
 }
 
+/*Pulse animation to the category toggle when it is first opened to draw attention to it. */
 @keyframes pulse-ring {
   0%   { box-shadow: 0 0 0 0 rgba(16, 115, 255, 0.35); }
   70%  { box-shadow: 0 0 0 7px transparent; }
@@ -1147,4 +1151,20 @@ footer {
   color: #fff;
   border-color: #1a1a18;
   transform: rotate(180deg);
+}
+
+/* Animated details/summary inside category lists */
+.category-list details[open] summary ~ * {
+  animation: details-fade-in 0.90s ease;
+}
+
+@keyframes details-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
