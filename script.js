@@ -4,7 +4,7 @@ if (yearEl) {
   yearEl.textContent = String(new Date().getFullYear());
 }
 
-// Dark mode toggle: initialize, persist, and stay Firefox-safe
+// Dark mode toggle: initialize, persist, stay
 (() => {
   const themeToggle = document.getElementById('themeToggle');
   const themeKnob = themeToggle ? themeToggle.querySelector('.theme-knob') : null;
@@ -365,4 +365,7 @@ if ('IntersectionObserver' in window) {
   revealEls.forEach((el) => el.classList.add('visible'));
 }
 
-
+// After DOM loads, pulse all toggles once to signal interactivity
+document.querySelectorAll('.category-toggle').forEach(btn => {
+  btn.classList.add('pulse-once');
+});

@@ -176,8 +176,6 @@ body.dark nav .nav-cta {
   border-color: rgba(0,0,0,0.08) !important;
 }
 
-
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -593,9 +591,8 @@ body.dark .nav-brand::after {
 
 /* Nested sub-list */
 .category-list details ul {
-  margin-left: 1rem;
   margin-top: 4px;
-  padding-left: 0.5rem;
+  padding-left: 1.1rem;
   border-left: 2px solid var(--border-strong);
   list-style: none;
 }
@@ -633,7 +630,7 @@ body.dark .nav-brand::after {
 }
 
 .service-category.open .category-list {
-  max-height: 420px; /* enough for list */
+  max-height: 520px; /* enough for list */
   padding: 8px 16px 16px;
 }
 
@@ -772,6 +769,14 @@ body.dark .nav-brand::after {
   justify-content: center;
   overflow: hidden;
   position: relative;
+}
+
+.about-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius);
 }
 
 .about-placeholder {
@@ -1117,3 +1122,29 @@ footer {
   * { transition-duration: 0.01ms !important; }
 }
 
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(16, 115, 255, 0.35); }
+  70%  { box-shadow: 0 0 0 7px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.category-toggle.pulse-once {
+  animation: pulse-ring 2s ease-out 0.7s 2;
+}
+
+/* Make caret visually distinct and state-aware */
+.category-caret {
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 10px;
+  transition: transform 0.22s ease, background 0.15s, color 0.15s;
+}
+
+.service-category.open .category-caret {
+  background: #1a1a18;
+  color: #fff;
+  border-color: #1a1a18;
+  transform: rotate(180deg);
+}
