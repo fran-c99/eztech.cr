@@ -176,7 +176,9 @@ body.dark nav .nav-cta {
   border-color: rgba(0,0,0,0.08) !important;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: 'Inter', sans-serif;
@@ -1136,7 +1138,7 @@ footer {
   animation: pulse-ring 2s ease-out 0.7s 2;
 }
 
-/* Make caret visually distinct and state-aware */
+/* Caret visually distinct and state-aware */
 .category-caret {
   background: var(--bg-card);
   border: 1px solid var(--border-strong);
@@ -1153,7 +1155,7 @@ footer {
   transform: rotate(180deg);
 }
 
-/* Animated details/summary inside category lists */
+/* Animated details / summary inside category lists */
 .category-list details[open] summary ~ * {
   animation: details-fade-in 0.90s ease;
 }
